@@ -1,0 +1,18 @@
+.footer {
+  flex-shrink: 0;
+  max-width: 880px;
+  margin: 0 auto 60px;
+}
+
+@media all and (max-width: 1024px) {
+  .footer {
+    max-width: 680px;
+  }
+}
+
+@media all and (max-width: 767.9px) {
+  .footer {
+    max-width: 282px;
+    margin-bottom: 36px;
+  }
+}

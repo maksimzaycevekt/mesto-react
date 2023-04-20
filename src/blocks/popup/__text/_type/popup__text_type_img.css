@@ -1,0 +1,11 @@
+.popup__text_type_img {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  max-width: 75vw;
+  margin-top: 10px;
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 1);
+}

@@ -1,0 +1,23 @@
+.profile {
+  max-width: 880px;
+  margin: 0 auto 51px;
+  display: grid;
+  grid-template-columns: 0.3fr 1fr 1fr;
+
+}
+
+@media all and (max-width: 1024px) {
+  .profile {
+    max-width: 680px;
+  }
+}
+
+@media all and (max-width: 767.9px) {
+  .profile {
+    max-width: 282px;
+    grid-template-columns: 282px;
+    grid-template-rows: repeat(auto-fill);
+    justify-items: center;
+    margin-bottom: 36px;
+  }
+}

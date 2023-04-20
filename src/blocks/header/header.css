@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  max-width: 880px;
+  margin: 45px auto 40px;
+  background-color: black;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+}
+
+@media all and (max-width: 1024px) {
+  .header {
+    max-width: 680px;
+  }
+}
+
+@media all and (max-width: 767.9px) {
+  .header {
+    max-width: 320px;
+    margin: 28px auto 38.25px;
+  }
+}
