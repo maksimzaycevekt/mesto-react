@@ -1,4 +1,4 @@
-import React from "react";
+import { useContext } from "react";
 import Card from "./Card.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
@@ -13,7 +13,7 @@ function Main({
   onConfirmDeletePopupClick,
 }) {
   //подписка на контекст с информацией профиля
-  const currentUser = React.useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
 
   //перебирает массив карточек и рендерит их на странице
   const cardsElements = cards.map((card) => (

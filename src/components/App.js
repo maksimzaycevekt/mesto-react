@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
@@ -12,11 +12,11 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function App() {
   //стейт хранит в себе данные пользователя
-  const [currentUser, setСurrentUser] = React.useState({});
+  const [currentUser, setСurrentUser] = useState({});
 
   //при монтировании запрашивает данные пользователя с сервера
   //передаёт их в стейт currentUser
-  React.useEffect(() => {
+  useEffect(() => {
     api
       .getInfoUser()
       .then((info) => {
@@ -26,10 +26,10 @@ function App() {
   }, []);
 
   //стейт хранит в себе объект с карточками
-  const [cards, setCards] = React.useState([]);
+  const [cards, setCards] = useState([]);
 
   //при монтировании запрашивает карточки с сервера
-  React.useEffect(() => {
+  useEffect(() => {
     api
       .getCards()
       .then((cards) => {
@@ -39,19 +39,17 @@ function App() {
   }, []);
 
   //стейты
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
-    React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
-    React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
 
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
 
   const [isConfirmDeletePopupOpen, setIsConfirmDeletePopupOpen] =
-    React.useState(false);
+    useState(false);
 
   //стейт для карточек
-  const [selectedCard, setSelectedCard] = React.useState({});
+  const [selectedCard, setSelectedCard] = useState({});
 
   //слушатели для попапов
   function handleEditAvatarClick() {
@@ -125,17 +123,25 @@ function App() {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-    });
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
+      .catch((err) => console.log(err));
   }
 
   //отвечает за удаление карточек по клику на урну
   function handleDeliteCard(id) {
-    api.deleteCard(id).then(() => {
-      const cardUpdate = cards.filter((card) => card._id !== id);
-      setCards(cardUpdate);
-    });
+    api
+      .deleteCard(id)
+      .then(() => {
+        const cardUpdate = cards.filter((card) => card._id !== id);
+        setCards(cardUpdate);
+      })
+      .catch((err) => console.log(err));
   }
 
   return (

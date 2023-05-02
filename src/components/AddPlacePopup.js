@@ -1,10 +1,10 @@
-import React from "react";
+import { useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup({ isOpen, onClose, onAddCard }) {
   //рефы на инпуты
-  const cardName = React.useRef();
-  const cardUrl = React.useRef();
+  const cardName = useRef();
+  const cardUrl = useRef();
 
   //передаёт value в app для api запроса
   function handleSubmit(e) {

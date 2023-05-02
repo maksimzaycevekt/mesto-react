@@ -1,9 +1,9 @@
-import React from "react";
+import { useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   //реф на инпут с url
-  const avatarRef = React.useRef();
+  const avatarRef = useRef();
 
   //передаёт value в app для api запроса
   function handleSubmit(e) {

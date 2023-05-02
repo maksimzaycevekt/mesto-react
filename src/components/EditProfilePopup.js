@@ -1,14 +1,14 @@
-import React from "react";
+import { useState, useEffect, useContext } from "react";
 import PopupWithForm from "./PopupWithForm.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   //подписка на контекст
-  const currentUser = React.useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
 
   //стейты со значениями полей
-  const [name, setName] = React.useState("");
-  const [description, setDescription] = React.useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
 
   //функции захватывающие значения полей и передающие их в стейты
   function handleChangeName(e) {
@@ -20,7 +20,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
 
   //передаёт значения по умолчанию в инпуты имени/деятельности
   //после загрузки пользователя из api
-  React.useEffect(() => {
+  useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
   }, [currentUser]);
@@ -52,7 +52,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
             minLength="2"
             maxLength="40"
             required
-            value={name}
+            value={name || ""}
             onChange={handleChangeName}
           />
           <span className="popup__input-error input-profile-name-error"></span>
@@ -65,7 +65,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
             minLength="2"
             maxLength="200"
             required
-            value={description}
+            value={description || ""}
             onChange={handleChangeDescription}
           />
           <span className="popup__input-error input-profile-job-error"></span>

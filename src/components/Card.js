@@ -1,14 +1,8 @@
-import React from "react";
+import { useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
-function Card({
-  card,
-  onCardClick,
-  onCardLike,
-  onCardDelete,
-  onConfirmDeletePopupClick,
-}) {
+function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   //подписка на контекст с инфо о пользователе
-  const currentUser = React.useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
 
   //проверка на принадлежность карточки пользователю
   //через сравнение id карточки с id пользователя
